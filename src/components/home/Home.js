@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { FaUser, FaHeart, FaImage, FaPhotoVideo } from "react-icons/fa";
+import { FaUser, FaHeart, FaImage, FaArrowRight } from "react-icons/fa";
 const Home = () => {
+  const [photos, SetPhotos] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/photoCount")
+      .then((res) => res.json())
+      .then((data) => {
+        SetPhotos(data);
+        console.log(data);
+      });
+  }, []);
   return (
     <>
       <section className="banner-container">
@@ -15,7 +24,25 @@ const Home = () => {
           </button>
         </div>
       </section>
-      <section className="container-fluid about-me bg-dark text-center text-white p-5 my-5 shadow-lg">
+      <section className="home-card-container mt-5">
+        {photos.map((p) => (
+          <div key={p._id} className="card" style={{ width: "18rem" }}>
+            <img src={p.serviceThumb} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <p className="card-title">{p.serviceTitle}</p>
+              <p class="card-text">Price: ${p.servicePrice}</p>
+              <p class="card-text">Ratings: {p.serviceRatings}</p>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        ))}
+      </section>
+      <div>
+        <button className="btn btn-primary d-block mx-auto mt-4 rounded-5">
+          Sell All <FaArrowRight></FaArrowRight>
+        </button>
+      </div>
+      <section className="container-fluid about-me bg-primary text-center text-white p-5 my-5 shadow-lg">
         <h2>ABOUT ME</h2>
         <p>
           “The long story short is that I'm just a guy lucky enough to pick up a
