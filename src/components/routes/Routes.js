@@ -4,6 +4,7 @@ import AddService from "../addService/AddService";
 import Blog from "../blog/Blog";
 import Home from "../home/Home";
 import Login from "../login/Login";
+import PrivateRoute from "../privateRoute/PrivateRoute";
 import Register from "../register/Register";
 import ServiceDetails from "../serviceDetrails/ServiceDetails";
 import Services from "../services/Services";
@@ -24,7 +25,11 @@ export const router = createBrowserRouter([
       {
         path: "/services",
         loader: async () => fetch(`http://localhost:5000/photographs`),
-        element: <Services></Services>,
+        element: (
+          <PrivateRoute>
+            <Services></Services>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/service/:id",
@@ -46,7 +51,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addService",
-        element: <AddService></AddService>,
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
       },
     ],
   },

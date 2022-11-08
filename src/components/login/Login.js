@@ -1,22 +1,25 @@
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Login = () => {
   const { userLogin, signWithGmail } = useContext(AuthContext);
   const [error, setError] = useState("");
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     //log in
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
         form.reset();
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((err) => {
