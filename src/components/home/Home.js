@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { FaUser, FaHeart, FaImage, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+
 const Home = () => {
   const [photos, SetPhotos] = useState([]);
   useEffect(() => {
@@ -26,17 +29,21 @@ const Home = () => {
         </div>
       </section>
       <section className="home-card-container mt-5">
-        {photos.map((p) => (
-          <div key={p._id} className="card" style={{ width: "18rem" }}>
-            <img src={p.serviceThumb} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <p className="card-title">{p.serviceTitle}</p>
-              <p class="card-text">Price: ${p.servicePrice}</p>
-              <p class="card-text">Ratings: {p.serviceRatings}</p>
-              <p class="card-text"></p>
+        <PhotoProvider>
+          {photos.map((p) => (
+            <div key={p._id} className="card" style={{ width: "18rem" }}>
+              <PhotoView src={p.serviceThumb}>
+                <img src={p.serviceThumb} class="card-img-top" alt="..." />
+              </PhotoView>
+              <div class="card-body">
+                <p className="card-title">{p.serviceTitle}</p>
+                <p class="card-text">Price: ${p.servicePrice}</p>
+                <p class="card-text">Ratings: {p.serviceRatings}</p>
+                <p class="card-text"></p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </PhotoProvider>
       </section>
       <div>
         <Link to="/services">
