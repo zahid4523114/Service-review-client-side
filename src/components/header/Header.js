@@ -5,9 +5,11 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <Link className="navbar-brand" href="#">
-          Navbar
-        </Link>
+        <div className="navbar-brand" href="#">
+          <h2>
+            Peta <span className="text-danger">Pixel</span>{" "}
+          </h2>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,25 +21,34 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className="collapse d-lg-flex justify-content-lg-end navbar-collapse"
+          id="navbarNav"
+        >
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" href="#">
+            <li className="nav-item me-lg-3">
+              {" "}
+              <Link
+                to="/home"
+                className="nav-link  fs-5 "
+                aria-current="page"
+                href="#"
+              >
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="#">
-                Features
+            <li className="nav-item me-lg-3">
+              <Link className="nav-link  fs-5" href="#">
+                My Reviews
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="#">
-                Pricing
+            <li className="nav-item me-lg-3">
+              <Link className="nav-link  fs-5" href="#">
+                Add Service
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link">Disabled</Link>
+            <li className="nav-item me-lg-3">
+              <Link className="nav-link  fs-5">Blog</Link>
             </li>
           </ul>
         </div>
