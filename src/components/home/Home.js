@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { FaUser, FaHeart, FaImage, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [photos, SetPhotos] = useState([]);
   useEffect(() => {
@@ -38,9 +39,11 @@ const Home = () => {
         ))}
       </section>
       <div>
-        <button className="btn btn-primary d-block mx-auto mt-4 rounded-5">
-          Sell All <FaArrowRight></FaArrowRight>
-        </button>
+        <Link to="/services">
+          <button className="btn btn-primary d-block mx-auto mt-4 rounded-5">
+            Sell All <FaArrowRight></FaArrowRight>
+          </button>
+        </Link>
       </div>
       <section className="container-fluid about-me bg-primary text-center text-white p-5 my-5 shadow-lg">
         <h2>ABOUT ME</h2>
