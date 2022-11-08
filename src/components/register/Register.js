@@ -60,7 +60,9 @@ const Register = () => {
       </div>
 
       <p className="text-danger">{error}</p>
-
+      <Link className="text-primary" to="/logIn">
+        <p> Already have an account?</p>
+      </Link>
       <button type="submit" class="btn btn-primary rounded-5">
         Sign Up
       </button>

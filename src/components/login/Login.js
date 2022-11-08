@@ -55,6 +55,10 @@ const Login = () => {
         />
       </div>
       <p className="text-danger">{error}</p>
+      <Link className="text-primary" to="/register">
+        <p> Need an account?</p>
+      </Link>
+
       <button type="submit" class="btn btn-primary rounded-5">
         Log In
       </button>
