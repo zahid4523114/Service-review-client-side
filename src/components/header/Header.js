@@ -30,7 +30,6 @@ const Header = () => {
         >
           <ul className="navbar-nav">
             <li className="nav-item me-lg-3">
-              {" "}
               <Link
                 to="/home"
                 className="nav-link  fs-5 "
@@ -38,6 +37,16 @@ const Header = () => {
                 href="#"
               >
                 Home
+              </Link>
+            </li>
+            <li className="nav-item me-lg-3">
+              <Link
+                to="/services"
+                className="nav-link  fs-5 "
+                aria-current="page"
+                href="#"
+              >
+                Services
               </Link>
             </li>
             {user?.email || user?.uid ? (
@@ -48,7 +57,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item me-lg-3">
-                  <Link className="nav-link  fs-5" href="#">
+                  <Link to="/addService" className="nav-link  fs-5" href="#">
                     Add Service
                   </Link>
                 </li>

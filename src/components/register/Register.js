@@ -4,13 +4,15 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Register = () => {
-  const { userRegister, signWithGmail } = useContext(AuthContext);
+  const { userRegister, signWithGmail, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   console.log(userRegister);
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
+    const photo = form.photo.value;
+    const name = form.name.value;
     const password = form.password.value;
     console.log(email, password);
     //register
@@ -18,6 +20,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
+        profileUpdate(name, photo);
         console.log(user);
       })
       .catch((err) => {
@@ -25,11 +28,48 @@ const Register = () => {
         console.log(err.message);
       });
   };
+  const profileUpdate = (name, photo) => {
+    updateUser(name, photo)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <form onSubmit={handleRegister} className="w-75 mx-auto my-5">
       <h1 className="my-3">Register</h1>
       <div id="emailHelp" class="form-text">
         We'll never share your email and password with anyone else.
+      </div>
+      <div className="mb-3 mt-3">
+        <label for="exampleInputEmail1" class="form-label">
+          User name
+        </label>
+        <input
+          required
+          type="text"
+          placeholder="name"
+          name="name"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div className="mb-3 mt-3">
+        <label for="exampleInputEmail1" class="form-label">
+          Photo url
+        </label>
+        <input
+          required
+          type="text"
+          placeholder="url"
+          name="photo"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
       </div>
       <div className="mb-3 mt-3">
         <label for="exampleInputEmail1" class="form-label">
@@ -45,6 +85,7 @@ const Register = () => {
           aria-describedby="emailHelp"
         />
       </div>
+
       <div className="mb-3">
         <label for="exampleInputPassword1" class="form-label">
           Password
