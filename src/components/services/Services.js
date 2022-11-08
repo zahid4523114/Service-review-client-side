@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Services.css";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
 const Services = () => {
   const servicesData = useLoaderData();
+
   return (
     <div className="services-container my-5">
       <PhotoProvider>
@@ -24,7 +25,11 @@ const Services = () => {
               </p>
               <p>Price: ${service.servicePrice}</p>
             </div>
-            <button className="btn btn-primary">View Details</button>
+            <Link to={`/service/${service._id}`}>
+              <button className="btn btn-primary container-fluid">
+                View Details
+              </button>
+            </Link>
           </div>
         ))}
       </PhotoProvider>
