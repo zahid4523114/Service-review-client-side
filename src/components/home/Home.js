@@ -23,9 +23,11 @@ const Home = () => {
             Discover <br /> and <br /> Share Your{" "}
             <span className="text-warning">Best Photos</span> from Here.
           </h1>
-          <button className="btn btn-warning text-success fw-bold  rounded-5 ">
-            SIGN UP
-          </button>
+          <Link to="/register">
+            <button className="btn btn-warning text-success fw-bold  rounded-5 ">
+              SIGN UP
+            </button>
+          </Link>
         </div>
       </section>
       <section className="home-card-container mt-5">

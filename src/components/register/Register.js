@@ -1,10 +1,77 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Register = () => {
+  const { userRegister, signWithGmail } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  console.log(userRegister);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    //register
+    userRegister(email, password)
+      .then((result) => {
+        const user = result.user;
+        form.reset();
+        console.log(user);
+      })
+      .catch((err) => {
+        setError(err.message);
+        console.log(err.message);
+      });
+  };
   return (
-    <div>
-      <h1>this is register page</h1>
-    </div>
+    <form onSubmit={handleRegister} className="w-75 mx-auto my-5">
+      <h1 className="my-3">Register</h1>
+      <div id="emailHelp" class="form-text">
+        We'll never share your email and password with anyone else.
+      </div>
+      <div className="mb-3 mt-3">
+        <label for="exampleInputEmail1" class="form-label">
+          Email address
+        </label>
+        <input
+          required
+          type="email"
+          placeholder="email"
+          name="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div className="mb-3">
+        <label for="exampleInputPassword1" class="form-label">
+          Password
+        </label>
+        <input
+          required
+          type="password"
+          placeholder="password"
+          name="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+
+      <p className="text-danger">{error}</p>
+
+      <button type="submit" class="btn btn-primary rounded-5">
+        Sign Up
+      </button>
+      <div className="mx-auto text-center">
+        <Link onClick={signWithGmail}>
+          <button className="btn rounded-5 shadow-lg mt-4">
+            <FcGoogle className="fs-5"></FcGoogle> Sign Up with Google
+          </button>
+        </Link>
+      </div>
+    </form>
   );
 };
 

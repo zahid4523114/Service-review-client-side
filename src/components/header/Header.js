@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
+  const { user, userLogOut } = useContext(AuthContext);
+  console.log(user);
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -37,16 +40,35 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item me-lg-3">
-              <Link className="nav-link  fs-5" href="#">
-                My Reviews
-              </Link>
-            </li>
-            <li className="nav-item me-lg-3">
-              <Link className="nav-link  fs-5" href="#">
-                Add Service
-              </Link>
-            </li>
+            {user?.email || user?.uid ? (
+              <>
+                <li className="nav-item me-lg-3">
+                  <Link className="nav-link  fs-5" href="#">
+                    My Reviews
+                  </Link>
+                </li>
+                <li className="nav-item me-lg-3">
+                  <Link className="nav-link  fs-5" href="#">
+                    Add Service
+                  </Link>
+                </li>
+                <li className="nav-item me-lg-3">
+                  <Link
+                    onClick={userLogOut}
+                    className="nav-link  fs-5"
+                    href="#"
+                  >
+                    Log Out
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item me-lg-3">
+                <Link to="/logIn" className="nav-link  fs-5" href="#">
+                  Log In
+                </Link>
+              </li>
+            )}
             <li className="nav-item me-lg-3">
               <Link className="nav-link  fs-5">Blog</Link>
             </li>

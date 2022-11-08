@@ -1,17 +1,63 @@
-// import React, { createContext, useState } from "react";
-// import app from "../../firebase/firebase.config";
-// import { getAuth } from "firebase/auth";
+import React, { createContext, useEffect, useState } from "react";
+import app from "../../firebase/firebase.config";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
-// export const AuthContext = createContext();
-// const auth = getAuth(app);
+export const AuthContext = createContext();
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-// const AuthProvider = () => {
-//   const [user, setUser] = useState({});
-//   const [loader, setLoader] = useState(true);
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [loader, setLoader] = useState(true);
+  //create user
+  const userRegister = (email, password) => {
+    setLoader(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  //sign in user
+  const userLogin = (email, password) => {
+    setLoader(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  //sign in with gmail
+  const signWithGmail = () => {
+    return signInWithPopup(auth, provider);
+  };
+  //logout user
+  const userLogOut = () => {
+    setLoader(true);
+    return signOut(auth);
+  };
 
-//   const authInfo = {};
+  //get current user
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoader(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-//   return <AuthContext.Provider></AuthContext.Provider>;
-// };
+  const authInfo = {
+    userRegister,
+    userLogin,
+    userLogOut,
+    user,
+    loader,
+    signWithGmail,
+  };
 
-// export default AuthProvider;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
+};
+
+export default AuthProvider;
