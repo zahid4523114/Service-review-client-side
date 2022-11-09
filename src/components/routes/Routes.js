@@ -9,6 +9,7 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import Register from "../register/Register";
 import ServiceDetails from "../serviceDetrails/ServiceDetails";
 import Services from "../services/Services";
+import UpdateReview from "../updateReview/UpdateReview";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "/myReview",
         element: <MyReview></MyReview>,
+      },
+      {
+        path: "/updateReview",
+        element: <UpdateReview></UpdateReview>,
       },
       {
         path: "/*",

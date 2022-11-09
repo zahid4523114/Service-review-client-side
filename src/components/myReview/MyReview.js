@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import "./MyReview.css";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 import UseTitle from "../useTitle/UseTitle";
+import { Link } from "react-router-dom";
 
 const MyReview = () => {
-  const alertForData = () => {
-    swal("hello there", "Review deleted successfully", "success");
-  };
+  //   const alertForData = () => {
+  //     swal("hello there", "Review deleted successfully", "success");
+  //   };
   UseTitle("My Review");
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
@@ -33,6 +34,21 @@ const MyReview = () => {
         console.log(data);
       });
   };
+
+  //update review
+  //   const handleReviewUpdate = (id) => {
+  //     fetch(`http://localhost:5000/reviews/${id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(reviews),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //       });
+  //   };
   return (
     <div>
       {reviews.length > 0 ? (
@@ -45,12 +61,11 @@ const MyReview = () => {
                 <h4>{review.email}</h4>
                 <p class="card-text">{review.description}</p>
                 <div>
-                  <button
-                    onClick={alertForData}
-                    className="btn rounded-circle px-3 py-2 btn-success"
-                  >
-                    +
-                  </button>
+                  <Link to="/updateReview">
+                    <button className="btn rounded-circle px-3 py-2 btn-success">
+                      +
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleReviewDelete(review._id)}
                     className="btn rounded-circle ms-2 px-3 py-2 btn-danger"

@@ -18,9 +18,25 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
+        //jwt
+        // const currentUser = {
+        //   email: user.email,
+        // };
+        // fetch(`http://localhost:5000/jwt`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(currentUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //     localStorage.setItem("service-token", data.token);
+        //   });
         form.reset();
         navigate(from, { replace: true });
-        console.log(user);
       })
       .catch((err) => {
         setError(err.message);

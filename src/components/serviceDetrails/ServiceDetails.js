@@ -11,7 +11,7 @@ const ServiceDetails = () => {
   UseTitle("Service Details");
   const { user } = useContext(AuthContext);
   const details = useLoaderData();
-  console.log(details);
+
   const {
     serviceThumb,
     serviceDes,
