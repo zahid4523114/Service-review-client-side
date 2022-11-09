@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import UseTitle from "../useTitle/UseTitle";
 
 const AddService = () => {
+  UseTitle("Add Service");
   const alertForData = () => {
-    swal("Good job!", "Data post into database!", "success");
+    swal("Good job!", "Service add to database!", "success");
   };
   const addService = (event) => {
     event.preventDefault();

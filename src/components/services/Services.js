@@ -3,10 +3,11 @@ import "./Services.css";
 import { Link, useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import UseTitle from "../useTitle/UseTitle";
 
 const Services = () => {
   const servicesData = useLoaderData();
-
+  UseTitle("Services");
   return (
     <div className="services-container my-5">
       <PhotoProvider>

@@ -1,6 +1,8 @@
 import React from "react";
+import UseTitle from "../useTitle/UseTitle";
 
 const Blog = () => {
+  UseTitle("Blog");
   return (
     <div class="accordion accordion-flush " id="accordionFlushExample">
       <div class="accordion-item">

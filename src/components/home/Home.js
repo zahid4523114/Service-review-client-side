@@ -4,8 +4,10 @@ import { FaUser, FaHeart, FaImage, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import UseTitle from "../useTitle/UseTitle";
 
 const Home = () => {
+  UseTitle("Home");
   const [photos, SetPhotos] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/photoCount")
