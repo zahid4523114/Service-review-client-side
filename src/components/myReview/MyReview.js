@@ -13,6 +13,21 @@ const MyReview = () => {
         console.log(data);
       });
   }, [user?.email]);
+
+  const handleReviewDelete = (id) => {
+    fetch(`http://localhost:5000/reviews/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          const remainingReview = reviews.filter((review) => review._id !== id);
+          setReviews(remainingReview);
+        }
+        console.log(data);
+      });
+    console.log(id);
+  };
   return (
     <div className="review-container">
       {reviews.map((review) => (
@@ -26,7 +41,10 @@ const MyReview = () => {
               <button className="btn rounded-circle px-3 py-2 btn-success">
                 +
               </button>
-              <button className="btn rounded-circle ms-2 px-3 py-2 btn-danger">
+              <button
+                onClick={() => handleReviewDelete(review._id)}
+                className="btn rounded-circle ms-2 px-3 py-2 btn-danger"
+              >
                 -
               </button>
             </div>

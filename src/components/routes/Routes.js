@@ -62,6 +62,16 @@ export const router = createBrowserRouter([
         path: "/myReview",
         element: <MyReview></MyReview>,
       },
+      {
+        path: "/*",
+        element: (
+          <div className="mx-auto">
+            <h1 className="text-danger text-center">
+              Enter a correct route please..!
+            </h1>
+          </div>
+        ),
+      },
     ],
   },
 ]);
