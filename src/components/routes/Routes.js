@@ -4,6 +4,7 @@ import AddService from "../addService/AddService";
 import Blog from "../blog/Blog";
 import Home from "../home/Home";
 import Login from "../login/Login";
+import MyReview from "../myReview/MyReview";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Register from "../register/Register";
 import ServiceDetails from "../serviceDetrails/ServiceDetails";
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/myReview",
+        element: <MyReview></MyReview>,
       },
     ],
   },

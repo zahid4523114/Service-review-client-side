@@ -52,7 +52,7 @@ const Header = () => {
             {user?.email || user?.uid ? (
               <>
                 <li className="nav-item me-lg-3">
-                  <Link className="nav-link  fs-5" href="#">
+                  <Link to="/myReview" className="nav-link  fs-5" href="#">
                     My Reviews
                   </Link>
                 </li>

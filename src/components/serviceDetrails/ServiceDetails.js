@@ -26,14 +26,15 @@ const ServiceDetails = () => {
     const form = event.target;
     const email = form.email.value;
     const name = form.name.value;
+    const image = form.image.value;
     const price = form.price.value;
     const description = form.description.value;
     const id = details._id;
-    // console.log(email, name, price, description, id);
     //reviewer data
     const reviewerData = {
       email: email,
       name: name,
+      image: image,
       price: price,
       description: description,
       id: id,
@@ -51,8 +52,6 @@ const ServiceDetails = () => {
         if (data.acknowledged) {
           alertForData();
           form.reset();
-        } else {
-          console.log(data);
         }
       });
   };
@@ -105,6 +104,20 @@ const ServiceDetails = () => {
               type="text"
               placeholder="name"
               name="name"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div className="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">
+              Reviewer image
+            </label>
+            <input
+              required
+              type="text"
+              placeholder="img url"
+              name="image"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
