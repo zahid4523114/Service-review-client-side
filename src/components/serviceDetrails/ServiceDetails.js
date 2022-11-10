@@ -60,7 +60,7 @@ const ServiceDetails = () => {
         }
       });
   };
-  // //get single service review
+  //get single service review
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch(
@@ -89,10 +89,15 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
+      {/* single service */}
       <div>
-        <h2 className="text-center shadow-lg p-2 rounded-2 container my-4">
-          Service Review
-        </h2>
+        {reviews.length > 0 ? (
+          <h2 className="text-center shadow-lg p-2 rounded-2 container my-4">
+            Service Review
+          </h2>
+        ) : (
+          <b className="text-center d-block my-4">No review for this service</b>
+        )}
         <div className="service-review-container">
           {reviews.map((review) => (
             <div class="card" style={{ width: "18rem" }}>
