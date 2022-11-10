@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import UseTitle from "../useTitle/UseTitle";
 import swal from "sweetalert";
+import "./Details.css";
 
 const ServiceDetails = () => {
   const alertForData = () => {
@@ -41,6 +42,7 @@ const ServiceDetails = () => {
       description: description,
       id: id,
     };
+    console.log(id);
     //post to db
     fetch(`https://b6-assignment-11-server.vercel.app/reviews`, {
       method: "POST",
@@ -59,17 +61,17 @@ const ServiceDetails = () => {
       });
   };
   // //get single service review
-  // const [reviews, setReviews] = useState([]);
-  // useEffect(() => {
-  //   fetch(
-  //     `https://b6-assignment-11-server.vercel.app/serviceReview/${details._id}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setReviews(data);
-  //       console.log(data);
-  //     });
-  // }, []);
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch(
+      `https://b6-assignment-11-server.vercel.app/reviews?id=${details._id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        console.log(data);
+      });
+  }, [details._id]);
   return (
     <section>
       <div class="card mb-3 m-3" style={{ maxWidth: "540px;" }}>
@@ -87,7 +89,23 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
-      <div>{/* <h1 className="text-center">{reviews.length}</h1> */}</div>
+      <div>
+        <h2 className="text-center shadow-lg p-2 rounded-2 container my-4">
+          Service Review
+        </h2>
+        <div className="service-review-container">
+          {reviews.map((review) => (
+            <div class="card" style={{ width: "18rem" }}>
+              <img src={review.image} class="card-img-top" alt="..." />
+              <div class="card-body">
+                <b>{review.time}</b>
+                <h5 class="card-title">{review.name}</h5>
+                <p class="card-text">{review.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
       {/* add review section */}
       {user || user?.email ? (
         <form
