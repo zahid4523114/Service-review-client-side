@@ -23,7 +23,7 @@ const Services = () => {
     <section>
       {loader ? (
         <div class="d-flex my-4 justify-content-center">
-          <div class="spinner-border" role="status">
+          <div class="spinner-border text-warning" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
