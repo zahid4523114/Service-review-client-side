@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import "./MyReview.css";
-// import swal from "sweetalert";
+import swal from "sweetalert";
 import UseTitle from "../useTitle/UseTitle";
 import { Link } from "react-router-dom";
 
 const MyReview = () => {
-  //   const alertForData = () => {
-  //     swal("hello there", "Review deleted successfully", "success");
-  //   };
+  const alertForDelete = () => {
+    swal("Warning", "Review deleted successfully", "warning");
+  };
   UseTitle("My Review");
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
@@ -30,6 +30,7 @@ const MyReview = () => {
         if (data.deletedCount > 0) {
           const remainingReview = reviews.filter((review) => review._id !== id);
           setReviews(remainingReview);
+          alertForDelete();
         }
         console.log(data);
       });
