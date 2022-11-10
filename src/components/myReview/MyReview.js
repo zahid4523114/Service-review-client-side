@@ -12,6 +12,7 @@ const MyReview = () => {
   UseTitle("My Review");
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  console.log(reviews);
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`)
       .then((res) => res.json())
@@ -62,7 +63,7 @@ const MyReview = () => {
                 <h4>{review.email}</h4>
                 <p class="card-text">{review.description}</p>
                 <div>
-                  <Link to="/updateReview">
+                  <Link to={`/review/${review._id}`}>
                     <button className="btn rounded-circle px-3 py-2 btn-success">
                       +
                     </button>

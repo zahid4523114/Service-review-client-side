@@ -1,7 +1,15 @@
 import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import swal from "sweetalert";
 
 const UpdateReview = () => {
+  const alertForUpdate = () => {
+    swal("Good job!", "Review Update to database!", "success");
+  };
+
+  const updateData = useLoaderData();
+  const { name, price, description, image, _id } = updateData;
   const { user } = useContext(AuthContext);
 
   const reviewUpdate = (event) => {
@@ -21,8 +29,8 @@ const UpdateReview = () => {
       description: description,
     };
     //post to db
-    fetch(`http://localhost:5000/reviews`, {
-      method: "POST",
+    fetch(`http://localhost:5000/reviews/${_id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,6 +40,7 @@ const UpdateReview = () => {
       .then((data) => {
         if (data.acknowledged) {
           form.reset();
+          alertForUpdate();
         }
       });
   };
@@ -47,6 +56,7 @@ const UpdateReview = () => {
         </label>
         <input
           defaultValue={user?.email}
+          readOnly
           required
           type="email"
           placeholder="email"
@@ -61,6 +71,7 @@ const UpdateReview = () => {
           Reviewer name
         </label>
         <input
+          defaultValue={name}
           required
           type="text"
           placeholder="name"
@@ -75,6 +86,7 @@ const UpdateReview = () => {
           Reviewer image
         </label>
         <input
+          defaultValue={image}
           required
           type="text"
           placeholder="img url"
@@ -89,6 +101,7 @@ const UpdateReview = () => {
           Recommend Service Price
         </label>
         <input
+          defaultValue={price}
           required
           type="number"
           placeholder="price"
@@ -103,6 +116,7 @@ const UpdateReview = () => {
           Add description about this service
         </label>
         <textarea
+          defaultValue={description}
           name="description"
           class="form-control"
           id="exampleFormControlTextarea1"
@@ -110,7 +124,7 @@ const UpdateReview = () => {
         ></textarea>
       </div>
       <button type="submit" class="btn btn-primary rounded-5">
-        Add Review
+        Update Review
       </button>
     </form>
   );

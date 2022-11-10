@@ -68,6 +68,12 @@ export const router = createBrowserRouter([
         element: <UpdateReview></UpdateReview>,
       },
       {
+        path: "/review/:id",
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/reviews/${params.id}`),
+        element: <UpdateReview></UpdateReview>,
+      },
+      {
         path: "/*",
         element: (
           <div className="mx-auto">
