@@ -26,7 +26,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/services",
-        loader: async () => fetch(`http://localhost:5000/photographs`),
+        loader: async () =>
+          fetch(`https://b6-assignment-11-server.vercel.app/photographs`),
         element: (
           <PrivateRoute>
             <Services></Services>
@@ -36,7 +37,9 @@ export const router = createBrowserRouter([
       {
         path: "/service/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/photographs/${params.id}`),
+          fetch(
+            `https://b6-assignment-11-server.vercel.app/photographs/${params.id}`
+          ),
         element: <ServiceDetails></ServiceDetails>,
       },
       {
@@ -70,7 +73,9 @@ export const router = createBrowserRouter([
       {
         path: "/review/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/reviews/${params.id}`),
+          fetch(
+            `https://b6-assignment-11-server.vercel.app/reviews/${params.id}`
+          ),
         element: <UpdateReview></UpdateReview>,
       },
       {

@@ -14,7 +14,9 @@ const MyReview = () => {
   const [reviews, setReviews] = useState([]);
   console.log(reviews);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(
+      `https://b6-assignment-11-server.vercel.app/reviews?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -23,7 +25,7 @@ const MyReview = () => {
   }, [user?.email]);
 
   const handleReviewDelete = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://b6-assignment-11-server.vercel.app/reviews/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -39,7 +41,7 @@ const MyReview = () => {
 
   //update review
   //   const handleReviewUpdate = (id) => {
-  //     fetch(`http://localhost:5000/reviews/${id}`, {
+  //     fetch(`https://b6-assignment-11-server.vercel.app/reviews/${id}`, {
   //       method: "PUT",
   //       headers: {
   //         "Content-Type": "application/json",

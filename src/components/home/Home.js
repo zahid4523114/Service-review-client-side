@@ -10,7 +10,7 @@ const Home = () => {
   UseTitle("Home");
   const [photos, SetPhotos] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/photoCount")
+    fetch("https://b6-assignment-11-server.vercel.app/photoCount")
       .then((res) => res.json())
       .then((data) => {
         SetPhotos(data);

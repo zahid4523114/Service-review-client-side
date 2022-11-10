@@ -40,7 +40,7 @@ const ServiceDetails = () => {
       id: id,
     };
     //post to db
-    fetch(`http://localhost:5000/reviews`, {
+    fetch(`https://b6-assignment-11-server.vercel.app/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

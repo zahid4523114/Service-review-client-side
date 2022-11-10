@@ -24,7 +24,7 @@ const AddService = () => {
     };
 
     //post to db
-    fetch(`http://localhost:5000/photographs`, {
+    fetch(`https://b6-assignment-11-server.vercel.app/photographs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

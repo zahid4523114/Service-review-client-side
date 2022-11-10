@@ -5,7 +5,7 @@ import swal from "sweetalert";
 
 const UpdateReview = () => {
   const alertForUpdate = () => {
-    swal("Good job!", "Review Update to database!", "success");
+    swal("Good Job!", "Review Update to database!", "success");
   };
 
   const updateData = useLoaderData();
@@ -29,7 +29,7 @@ const UpdateReview = () => {
       description: description,
     };
     //post to db
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://b6-assignment-11-server.vercel.app/reviews/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
