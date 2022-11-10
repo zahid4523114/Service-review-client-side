@@ -9,4 +9,5 @@
 .the main thing will happen when user will login in this website user can see more option in the header section.there will be many private route.
 .like when user want to see something or do something on this section user have to login in first then they can do their work.
 .new feature is added which is react-photo-view.user can see photo by zoom or scrolling right or left.
+.you will see review for each service in the details section.
 }
