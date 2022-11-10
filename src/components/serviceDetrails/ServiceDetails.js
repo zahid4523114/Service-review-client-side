@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import UseTitle from "../useTitle/UseTitle";
@@ -25,6 +25,7 @@ const ServiceDetails = () => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
+    const time = form.time.value;
     const name = form.name.value;
     const image = form.image.value;
     const price = form.price.value;
@@ -33,6 +34,7 @@ const ServiceDetails = () => {
     //reviewer data
     const reviewerData = {
       email: email,
+      time: time,
       name: name,
       image: image,
       price: price,
@@ -52,9 +54,22 @@ const ServiceDetails = () => {
         if (data.acknowledged) {
           alertForData();
           form.reset();
+          console.log(data);
         }
       });
   };
+  // //get single service review
+  // const [reviews, setReviews] = useState([]);
+  // useEffect(() => {
+  //   fetch(
+  //     `https://b6-assignment-11-server.vercel.app/serviceReview/${details._id}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setReviews(data);
+  //       console.log(data);
+  //     });
+  // }, []);
   return (
     <section>
       <div class="card mb-3 m-3" style={{ maxWidth: "540px;" }}>
@@ -72,6 +87,7 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
+      <div>{/* <h1 className="text-center">{reviews.length}</h1> */}</div>
       {/* add review section */}
       {user || user?.email ? (
         <form
@@ -79,6 +95,20 @@ const ServiceDetails = () => {
           className="w-75 mx-auto my-5 shadow-lg p-3 rounded-5"
         >
           <h1 className="my-3 text-center">Add your Review</h1>
+          <div className="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">
+              Time
+            </label>
+            <input
+              required
+              type="time"
+              placeholder="time"
+              name="time"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
           <div className="mb-3 mt-3">
             <label for="exampleInputEmail1" class="form-label">
               Email

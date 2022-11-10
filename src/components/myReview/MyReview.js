@@ -39,20 +39,6 @@ const MyReview = () => {
       });
   };
 
-  //update review
-  //   const handleReviewUpdate = (id) => {
-  //     fetch(`https://b6-assignment-11-server.vercel.app/reviews/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(reviews),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //       });
-  //   };
   return (
     <div>
       {reviews.length > 0 ? (

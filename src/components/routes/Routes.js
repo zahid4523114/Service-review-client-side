@@ -26,13 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/services",
-        loader: async () =>
-          fetch(`https://b6-assignment-11-server.vercel.app/photographs`),
-        element: (
-          <PrivateRoute>
-            <Services></Services>
-          </PrivateRoute>
-        ),
+        element: <Services></Services>,
       },
       {
         path: "/service/:id",
@@ -40,7 +34,11 @@ export const router = createBrowserRouter([
           fetch(
             `https://b6-assignment-11-server.vercel.app/photographs/${params.id}`
           ),
-        element: <ServiceDetails></ServiceDetails>,
+        element: (
+          <PrivateRoute>
+            <ServiceDetails></ServiceDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",

@@ -1,5 +1,7 @@
 1.Projects name: Peta pixel.
-2.live site link:
+
+2.live site link: https://b6-assinment-11.web.app
+
 3.Project's feature and functionalities:{
 .First of all this website has a responsive header.
 .In this website people can find their favorite photography easily.
