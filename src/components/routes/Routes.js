@@ -34,11 +34,7 @@ export const router = createBrowserRouter([
           fetch(
             `https://b6-assignment-11-server.vercel.app/photographs/${params.id}`
           ),
-        element: (
-          <PrivateRoute>
-            <ServiceDetails></ServiceDetails>
-          </PrivateRoute>
-        ),
+        element: <ServiceDetails></ServiceDetails>,
       },
       {
         path: "/register",
