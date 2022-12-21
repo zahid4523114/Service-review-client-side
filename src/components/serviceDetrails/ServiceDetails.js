@@ -111,7 +111,9 @@ const ServiceDetails = () => {
           ))}
         </div>
       </div>
+
       {/* add review section */}
+
       {user || user?.email ? (
         <form
           onSubmit={addReview}
